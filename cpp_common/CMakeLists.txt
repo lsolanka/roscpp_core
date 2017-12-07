@@ -7,7 +7,7 @@ find_package(catkin REQUIRED)
 catkin_package(
   DEPENDS Boost console_bridge
   INCLUDE_DIRS include
-  LIBRARIES ${PROJECT_NAME})
+  LIBRARIES ros::${PROJECT_NAME})
 
 include(CheckIncludeFile)
 include(CheckFunctionExists)
@@ -32,9 +32,14 @@ if(HAVE_GLIBC_BACKTRACE)
 endif(HAVE_GLIBC_BACKTRACE)
 
 add_library(${PROJECT_NAME} src/debug.cpp src/header.cpp)
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${console_bridge_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} Boost::boost Boost::system Boost::thread ${console_bridge_LIBRARIES})
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
 
 install(TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}Targets
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
@@ -42,3 +47,9 @@ install(TARGETS ${PROJECT_NAME}
 install(DIRECTORY include/
   DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}
   FILES_MATCHING PATTERN "*.h")
+
+install(EXPORT ${PROJECT_NAME}Targets
+    DESTINATION share/${PROJECT_NAME}/cmake
+    NAMESPACE ros::
+    FILE ${PROJECT_NAME}Targets.cmake
+)
