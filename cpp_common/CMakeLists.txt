@@ -4,10 +4,13 @@ project(cpp_common)
 find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(console_bridge REQUIRED)
 find_package(catkin REQUIRED)
+
+set(INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
 catkin_package(
   DEPENDS Boost console_bridge
   INCLUDE_DIRS include
-  LIBRARIES ros::${PROJECT_NAME})
+  LIBRARIES ${PROJECT_NAME}
+)
 
 include(CheckIncludeFile)
 include(CheckFunctionExists)

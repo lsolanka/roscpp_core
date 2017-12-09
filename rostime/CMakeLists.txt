@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(rostime)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS cpp_common)
 find_package(Boost REQUIRED COMPONENTS date_time system thread)
+
+set(INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES ros::${PROJECT_NAME}
+  LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS cpp_common
   DEPENDS Boost
 )
