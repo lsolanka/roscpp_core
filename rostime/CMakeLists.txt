@@ -9,7 +9,7 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS cpp_common
-  DEPENDS Boost
+  DEPENDS "Boost COMPONENTS date_time system thread"
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})

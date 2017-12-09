@@ -9,8 +9,6 @@ catkin_package(
   CATKIN_DEPENDS cpp_common roscpp_traits rostime
 )
 
-message(STATUS "catkin_LIBRARIES: ${catkin_LIBRARIES}")
-
 include_directories(include ${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
 

@@ -7,7 +7,7 @@ find_package(catkin REQUIRED)
 
 set(INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
 catkin_package(
-  DEPENDS Boost console_bridge
+  DEPENDS "Boost COMPONENTS system thread" console_bridge
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
 )
