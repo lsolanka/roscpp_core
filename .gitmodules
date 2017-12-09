@@ -1,3 +1,0 @@
-[submodule "submodules/catkin"]
-	path = submodules/catkin
-	url = git@github.com:lsolanka/catkin.git
