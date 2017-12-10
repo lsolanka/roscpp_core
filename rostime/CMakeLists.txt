@@ -4,7 +4,7 @@ project(rostime)
 find_package(catkin REQUIRED COMPONENTS cpp_common)
 find_package(Boost REQUIRED COMPONENTS date_time system thread)
 
-set(INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
+set(PROJECT_INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(roscpp_traits)
 find_package(catkin REQUIRED)
 
-set(INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
+set(PROJECT_INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
 catkin_package(
   LIBRARIES ${PROJECT_NAME}
   INCLUDE_DIRS include
