@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 2.8.3)
 
 include(cmake/HunterGate.cmake)
 HunterGate(
-    URL "https://github.com/lsolanka/hunter/archive/v0.19.210-1.tar.gz"
-    SHA1 "dcf5bbcdd34c5db52f5468105c7949ae68c57532"
+    URL "https://github.com/lsolanka/hunter/archive/v0.19.210-2.tar.gz"
+    SHA1 "908016f06f06d4c8b46045a1d9044d639acc1cfb"
 )
 
 project(roscpp_core)
 hunter_add_package(Boost COMPONENTS date_time system thread)
 hunter_add_package(ros-catkin)
+hunter_add_package(ros-console_bridge)
 
 find_package(Boost REQUIRED COMPONENTS date_time system thread)
 

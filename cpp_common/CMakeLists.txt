@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(cpp_common)
 
-find_package(Boost REQUIRED COMPONENTS system thread)
-find_package(console_bridge REQUIRED)
-find_package(catkin REQUIRED)
+find_package(Boost CONFIG REQUIRED COMPONENTS system thread)
+find_package(console_bridge CONFIG REQUIRED)
+find_package(catkin CONFIG REQUIRED)
 
 set(PROJECT_INSTALLSPACE_LIBRARIES ros::${PROJECT_NAME})
 catkin_package(
@@ -16,7 +16,7 @@ include(CheckIncludeFile)
 include(CheckFunctionExists)
 include(CheckCXXSourceCompiles)
 
-include_directories(include ${Boost_INCLUDE_DIRS} ${console_bridge_INCLUDE_DIRS})
+include_directories(include ${Boost_INCLUDE_DIRS} ros::console_bridge)
 
 # execinfo.h is needed for backtrace on glibc systems
 CHECK_INCLUDE_FILE(execinfo.h HAVE_EXECINFO_H)
@@ -35,7 +35,7 @@ if(HAVE_GLIBC_BACKTRACE)
 endif(HAVE_GLIBC_BACKTRACE)
 
 add_library(${PROJECT_NAME} src/debug.cpp src/header.cpp)
-target_link_libraries(${PROJECT_NAME} Boost::boost Boost::system Boost::thread ${console_bridge_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} Boost::boost Boost::system Boost::thread ros::console_bridge)
 target_include_directories(${PROJECT_NAME} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
